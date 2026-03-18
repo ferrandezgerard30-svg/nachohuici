@@ -1,0 +1,1173 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Nacho Huici — Barbería & Peluquería · Pamplona</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garant:ital,wght@0,300;0,400;0,600;1,300;1,400&family=Mulish:wght@300;400;500;600&family=Barlow+Condensed:wght@700;800&display=swap" rel="stylesheet">
+<style>
+:root {
+  --w:      #f8f3eb;
+  --cream:  #ede7da;
+  --linen:  #e2d9cb;
+  --sand:   #c9bba6;
+  --stone:  #9e8b78;
+  --bark:   #6e4e36;
+  --terra:  #a85c3a;
+  --terra-l:#c07858;
+  --moss:   #5c6e4a;
+  --sage:   #8ea07c;
+  --text:   #3c2e22;
+  --muted:  #8a7868;
+  --gap:    clamp(4rem,8vw,7rem);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--w);color:var(--text);
+  font-family:'Mulish',sans-serif;font-weight:300;line-height:1.75;
+  overflow-x:hidden;
+}
+/* Grain overlay */
+body::before{
+  content:'';position:fixed;inset:0;z-index:1000;pointer-events:none;
+  background-image:url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.035'/%3E%3C/svg%3E");
+  opacity:.4;mix-blend-mode:multiply;
+}
+
+/* Typography */
+h1,h2,h3,h4{font-family:'Cormorant Garant',serif;font-weight:400;line-height:1.12}
+em{font-style:italic}
+.label{
+  font-size:.62rem;letter-spacing:.38em;text-transform:uppercase;
+  color:var(--terra);display:block;margin-bottom:.9rem;
+  font-family:'Mulish',sans-serif;font-weight:600;
+}
+.section-h{font-size:clamp(2rem,3.8vw,3.2rem);color:var(--text)}
+.section-h em{color:var(--terra)}
+
+/* NAV */
+nav{
+  position:fixed;top:0;left:0;right:0;z-index:500;
+  display:grid;
+  grid-template-columns: 1fr auto 1fr;
+  align-items:center;
+  padding:0 3.5rem;
+  height:66px;
+  background:rgba(248,243,235,.96);backdrop-filter:blur(14px);
+  border-bottom:1px solid rgba(201,187,166,.4);
+  transition:box-shadow .3s,background .3s;
+}
+nav.scrolled{box-shadow:0 2px 24px rgba(60,46,34,.08)}
+
+/* Logo — left column */
+.nav-logo{
+  display:flex;align-items:center;text-decoration:none;
+  gap:0;flex-shrink:0;
+}
+.nav-logo-svg{height:34px;width:auto;display:block}
+
+/* Links — center column */
+.nav-links{
+  display:flex;align-items:center;gap:0;list-style:none;
+  justify-content:center;
+}
+.nav-links li{position:relative}
+.nav-links a{
+  display:block;
+  font-size:.63rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--muted);text-decoration:none;font-weight:600;
+  padding:.4rem .9rem;
+  transition:color .2s;
+  white-space:nowrap;
+}
+.nav-links a::after{
+  content:'';position:absolute;bottom:-.5rem;left:.9rem;right:.9rem;
+  height:1.5px;background:var(--terra);transform:scaleX(0);
+  transform-origin:center;transition:transform .25s ease;
+}
+.nav-links a:hover{color:var(--terra)}
+.nav-links a:hover::after{transform:scaleX(1)}
+
+/* Right side — CTA + phone */
+.nav-right{
+  display:flex;align-items:center;gap:1.2rem;justify-content:flex-end;
+}
+.nav-phone{
+  font-size:.63rem;letter-spacing:.1em;color:var(--muted);
+  text-decoration:none;font-weight:500;transition:color .2s;
+  white-space:nowrap;
+}
+.nav-phone:hover{color:var(--terra)}
+.nav-sep{width:1px;height:18px;background:var(--linen);flex-shrink:0}
+.nav-book{
+  font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;
+  background:var(--terra);color:var(--w);border:none;cursor:pointer;
+  padding:.5rem 1.4rem;font-family:'Mulish',sans-serif;font-weight:600;
+  text-decoration:none;transition:background .2s,transform .15s;border-radius:1px;
+  white-space:nowrap;flex-shrink:0;
+}
+.nav-book:hover{background:var(--bark);transform:translateY(-1px)}
+
+/* Mobile nav */
+@media(max-width:1060px){
+  nav{grid-template-columns:1fr auto;padding:0 1.8rem}
+  .nav-links{display:none}
+  .nav-phone,.nav-sep{display:none}
+}
+
+/* HERO */
+.hero{
+  min-height:100vh;display:grid;place-items:center;
+  position:relative;overflow:hidden;padding-top:72px;
+}
+.hero-bg{
+  position:absolute;inset:0;
+  background:url('Vestíbulo_moderno_con_lámpara_decorativa.png') center 35%/cover no-repeat;
+  animation:kb 20s ease-in-out infinite alternate;
+}
+@keyframes kb{from{transform:scale(1.04)}to{transform:scale(1.09) translateY(-1.5%)}}
+.hero-veil{
+  position:absolute;inset:0;
+  background:linear-gradient(160deg,rgba(237,231,218,.82) 0%,rgba(237,231,218,.5) 45%,rgba(237,231,218,.9) 100%);
+}
+.hero-content{position:relative;z-index:2;text-align:center;padding:0 2rem;max-width:780px}
+.hero-eyebrow{
+  font-size:.62rem;letter-spacing:.42em;text-transform:uppercase;
+  color:var(--terra);margin-bottom:1.4rem;font-weight:600;
+  animation:fu .7s .3s both;
+}
+.hero h1{
+  font-size:clamp(3.4rem,7.5vw,7.5rem);color:var(--text);
+  margin-bottom:.6rem;animation:fu .8s .45s both;
+}
+.hero h1 em{color:var(--terra)}
+.hero-sub{
+  font-size:.9rem;color:var(--muted);margin-bottom:2.8rem;
+  letter-spacing:.08em;animation:fu .7s .6s both;
+}
+.hero-actions{display:flex;gap:1rem;justify-content:center;flex-wrap:wrap;animation:fu .6s .8s both}
+
+/* BUTTONS */
+.btn{
+  font-family:'Mulish',sans-serif;font-weight:500;
+  font-size:.7rem;letter-spacing:.2em;text-transform:uppercase;
+  padding:.85rem 2.2rem;cursor:pointer;text-decoration:none;
+  transition:all .2s;border-radius:1px;display:inline-block;border:none;
+}
+.btn-primary{background:var(--terra);color:var(--w)}
+.btn-primary:hover{background:var(--bark);transform:translateY(-2px)}
+.btn-outline{background:transparent;color:var(--text);border:1.5px solid var(--sand)}
+.btn-outline:hover{border-color:var(--terra);color:var(--terra)}
+.btn-moss{background:var(--moss);color:var(--w)}
+.btn-moss:hover{background:#4a5c3a}
+.btn-sm{padding:.5rem 1.3rem;font-size:.63rem}
+.btn-danger{background:#b04030;color:var(--w)}
+.btn-danger:hover{background:#8c3024}
+.btn-ghost-terra{background:transparent;color:var(--terra);border:1.5px solid rgba(168,92,58,.35)}
+.btn-ghost-terra:hover{border-color:var(--terra);background:rgba(168,92,58,.06)}
+
+/* DIVIDER */
+.divider{border:none;border-top:1px solid var(--linen);margin:0 4rem}
+
+/* SECTION WRAPPER */
+.section-inner{max-width:1280px;margin:0 auto}
+section{padding:var(--gap) 4rem}
+
+/* ABOUT */
+.about{background:var(--cream);display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:center}
+.about-img{position:relative;aspect-ratio:3/4;overflow:hidden;border-radius:2px}
+.about-img img{width:100%;height:100%;object-fit:cover;object-position:center top;display:block;transition:transform .8s}
+.about-img:hover img{transform:scale(1.04)}
+.about-img::after{
+  content:'';position:absolute;inset:0;
+  background:linear-gradient(to top,rgba(110,78,54,.2) 0%,transparent 55%);
+}
+.about-frame{
+  position:absolute;top:1rem;left:1rem;right:-1rem;bottom:-1rem;
+  border:1px solid rgba(168,92,58,.25);z-index:-1;border-radius:2px;
+}
+.about-text .section-h{margin-bottom:1.5rem}
+.about-text p{color:var(--muted);line-height:1.9;font-size:.92rem;margin-bottom:.9rem}
+.rating-box{
+  display:flex;align-items:center;gap:1.2rem;margin-top:2rem;
+  padding:1.2rem 1.5rem;background:var(--w);
+  border:1px solid var(--linen);border-radius:2px;
+}
+.rating-n{font-family:'Cormorant Garant',serif;font-size:3rem;color:var(--terra);line-height:1}
+.stars-row{color:var(--terra);font-size:.9rem;letter-spacing:.06em}
+.stars-label{font-size:.63rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);margin-top:.15rem}
+
+/* SERVICES */
+.svcs-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1px;background:var(--linen);border:1px solid var(--linen);margin-top:3rem}
+.svc{
+  background:var(--w);padding:2.5rem 2rem;position:relative;overflow:hidden;
+  cursor:default;transition:background .3s;
+}
+.svc::after{
+  content:'';position:absolute;left:0;bottom:0;width:0;height:2px;
+  background:var(--terra);transition:width .4s;
+}
+.svc:hover{background:var(--cream)}
+.svc:hover::after{width:100%}
+.svc-n{font-family:'Cormorant Garant',serif;font-size:2.4rem;color:var(--linen);margin-bottom:.8rem;line-height:1;transition:color .3s}
+.svc:hover .svc-n{color:var(--sand)}
+.svc h3{font-size:1.28rem;color:var(--text);margin-bottom:.35rem;font-family:'Cormorant Garant',serif}
+.svc p{font-size:.8rem;color:var(--muted);line-height:1.8}
+.svc-dur{font-size:.65rem;letter-spacing:.15em;text-transform:uppercase;color:var(--terra);margin-top:.6rem;font-weight:600}
+
+/* GALLERY */
+.gallery-grid{display:grid;grid-template-columns:1.2fr 1fr;grid-template-rows:auto auto;gap:1rem;margin-top:3rem}
+.gal-item{overflow:hidden;border-radius:2px;position:relative}
+.gal-item img{width:100%;height:100%;object-fit:cover;min-height:280px;display:block;transition:transform .7s cubic-bezier(.23,1,.32,1)}
+.gal-item:hover img{transform:scale(1.05)}
+.gal-item.tall{grid-row:span 2}
+.gal-cap{
+  position:absolute;bottom:0;left:0;right:0;
+  padding:1.2rem 1.4rem;
+  background:linear-gradient(to top,rgba(62,46,34,.7),transparent);
+  opacity:0;transform:translateY(6px);transition:all .3s;
+}
+.gal-item:hover .gal-cap{opacity:1;transform:translateY(0)}
+.gal-cap p{font-size:.62rem;letter-spacing:.22em;text-transform:uppercase;color:rgba(248,243,235,.9)}
+.gal-text-card{
+  background:var(--cream);min-height:280px;display:flex;
+  align-items:center;justify-content:center;padding:2.5rem;border-radius:2px;
+  border:1px solid var(--linen);
+}
+.gal-text-card p{font-family:'Cormorant Garant',serif;font-size:1.6rem;color:var(--bark);line-height:1.4;text-align:center}
+.gal-text-card em{color:var(--terra)}
+
+/* BOOKING */
+#reservar{background:var(--cream)}
+.booking-wrap{max-width:860px;margin:0 auto}
+
+/* Steps indicator */
+.steps-bar{display:flex;align-items:center;margin-bottom:3.5rem}
+.step-item{display:flex;flex-direction:column;align-items:center;gap:.4rem;flex:1;position:relative}
+.step-item:not(:last-child)::after{
+  content:'';position:absolute;top:18px;left:calc(50% + 18px);right:calc(-50% + 18px);
+  height:1px;background:var(--linen);
+}
+.step-item:not(:last-child).done::after{background:var(--moss)}
+.step-circle{
+  width:36px;height:36px;border-radius:50%;
+  border:1.5px solid var(--sand);background:var(--w);
+  display:flex;align-items:center;justify-content:center;
+  font-size:.72rem;font-weight:600;color:var(--muted);
+  transition:all .3s;font-family:'Mulish',sans-serif;
+}
+.step-item.active .step-circle{background:var(--terra);border-color:var(--terra);color:var(--w)}
+.step-item.done .step-circle{background:var(--moss);border-color:var(--moss);color:var(--w);font-size:.85rem}
+.step-lbl{font-size:.58rem;letter-spacing:.15em;text-transform:uppercase;color:var(--muted);text-align:center}
+.step-item.active .step-lbl{color:var(--terra)}
+.step-item.done .step-lbl{color:var(--moss)}
+
+/* Step panels */
+.panel{display:none}
+.panel.show{display:block;animation:fu .4s both}
+
+/* Service options */
+.svc-opts{display:grid;grid-template-columns:repeat(3,1fr);gap:.9rem}
+.svc-opt{
+  padding:1.5rem 1.2rem;border:1.5px solid var(--linen);border-radius:2px;
+  background:var(--w);cursor:pointer;transition:all .2s;text-align:left;
+}
+.svc-opt:hover{border-color:var(--terra-l)}
+.svc-opt.sel{border-color:var(--terra);background:rgba(168,92,58,.04)}
+.svc-opt h4{font-family:'Cormorant Garant',serif;font-size:1.1rem;color:var(--text);margin-bottom:.2rem}
+.svc-opt .dur{font-size:.65rem;letter-spacing:.12em;text-transform:uppercase;color:var(--terra);font-weight:600;font-family:'Mulish',sans-serif}
+.svc-opt .desc{font-size:.78rem;color:var(--muted);margin-top:.3rem;line-height:1.6}
+
+/* Calendar */
+.cal-wrap{max-width:400px}
+.cal-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:1.2rem}
+.cal-head h3{font-family:'Cormorant Garant',serif;font-size:1.2rem;color:var(--text);text-transform:capitalize}
+.cal-btn{
+  background:none;border:1px solid var(--linen);padding:.35rem .8rem;
+  cursor:pointer;color:var(--muted);border-radius:1px;transition:all .2s;font-size:.85rem;
+}
+.cal-btn:hover{border-color:var(--terra);color:var(--terra)}
+.cal-grid{display:grid;grid-template-columns:repeat(7,1fr);gap:3px}
+.dow{text-align:center;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--stone);padding:.4rem 0}
+.cday{
+  aspect-ratio:1;display:flex;align-items:center;justify-content:center;
+  font-size:.8rem;border-radius:1px;cursor:pointer;border:1px solid transparent;
+  transition:all .2s;font-family:'Mulish',sans-serif;color:var(--text);
+}
+.cday:hover:not(.off):not(.pp){border-color:var(--terra);color:var(--terra)}
+.cday.sel{background:var(--terra);color:var(--w);border-color:var(--terra)}
+.cday.tod{font-weight:700}
+.cday.tod:not(.sel){color:var(--terra)}
+.cday.pp{text-decoration:line-through;color:var(--sand);cursor:not-allowed}
+.cday.off{color:var(--linen);cursor:not-allowed}
+.cday.empty{cursor:default}
+
+/* Time slots */
+.slots-grid{display:grid;grid-template-columns:repeat(6,1fr);gap:.45rem;margin-top:1rem}
+.tslot{
+  padding:.55rem .2rem;text-align:center;font-size:.75rem;
+  border:1px solid var(--linen);border-radius:1px;cursor:pointer;
+  transition:all .2s;background:var(--w);font-family:'Mulish',sans-serif;color:var(--text);
+}
+.tslot:hover:not(.taken):not(.past-t){border-color:var(--terra);color:var(--terra)}
+.tslot.sel{background:var(--terra);color:var(--w);border-color:var(--terra)}
+.tslot.taken{background:var(--linen);color:var(--sand);cursor:not-allowed;text-decoration:line-through}
+.tslot.past-t{color:var(--linen);text-decoration:line-through;cursor:not-allowed}
+.slots-legend{display:flex;gap:1.5rem;margin-bottom:1rem;font-size:.7rem;color:var(--muted);align-items:center;flex-wrap:wrap}
+.leg{display:flex;align-items:center;gap:.4rem}
+.leg-dot{width:10px;height:10px;border-radius:50%}
+.leg-avail{background:var(--w);border:1px solid var(--linen)}
+.leg-sel{background:var(--terra)}
+.leg-taken{background:var(--linen)}
+.leg-past{background:transparent;border:1px solid var(--linen);position:relative}
+.leg-past::after{content:'';position:absolute;top:50%;left:-1px;right:-1px;height:1px;background:var(--sand)}
+
+/* Form */
+.form-grid{display:grid;gap:1.1rem}
+.frow{display:grid;grid-template-columns:1fr 1fr;gap:1.1rem}
+.fgroup{display:flex;flex-direction:column;gap:.35rem}
+.fgroup label{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:var(--muted);font-weight:600}
+.fgroup input,.fgroup textarea{
+  padding:.8rem 1rem;border:1.5px solid var(--linen);border-radius:1px;
+  background:var(--w);color:var(--text);font-family:'Mulish',sans-serif;
+  font-size:.9rem;transition:border-color .2s;outline:none;line-height:1.5;
+}
+.fgroup input:focus,.fgroup textarea:focus{border-color:var(--terra)}
+.fgroup textarea{resize:vertical;min-height:80px}
+
+/* Summary box */
+.summary-box{
+  background:var(--w);border:1px solid var(--linen);border-radius:2px;
+  padding:1.5rem 1.8rem;margin-bottom:2rem;
+}
+.summary-box h4{font-family:'Cormorant Garant',serif;font-size:1.1rem;margin-bottom:.8rem;color:var(--text)}
+.sum-row{display:flex;justify-content:space-between;font-size:.82rem;color:var(--muted);padding:.3rem 0;border-bottom:1px solid rgba(226,217,203,.5)}
+.sum-row:last-child{border-bottom:none}
+.sum-row span:last-child{color:var(--text);font-weight:500}
+
+/* Confirmation */
+.confirm-box{
+  background:var(--w);border:1px solid var(--linen);border-radius:2px;
+  padding:3rem 2.5rem;text-align:center;
+}
+.confirm-check{
+  width:60px;height:60px;border-radius:50%;background:rgba(92,110,74,.12);
+  display:flex;align-items:center;justify-content:center;
+  margin:0 auto 1.5rem;font-size:1.5rem;color:var(--moss);
+}
+.booking-id-show{
+  font-family:'Cormorant Garant',serif;font-size:2.4rem;
+  color:var(--terra);letter-spacing:.1em;margin:.8rem 0;
+}
+.confirm-detail{font-size:.85rem;color:var(--muted);line-height:2.1}
+.confirm-note{
+  margin-top:2rem;padding:1rem 1.5rem;
+  background:rgba(92,110,74,.07);border-left:3px solid var(--moss);
+  font-size:.82rem;color:var(--muted);text-align:left;
+}
+
+/* Cancel section */
+.cancel-block{
+  margin-top:4rem;padding:2.5rem 2rem;
+  background:var(--w);border:1px solid var(--linen);border-radius:2px;
+}
+.cancel-block h3{font-family:'Cormorant Garant',serif;font-size:1.4rem;margin-bottom:.5rem}
+.cancel-block p{font-size:.85rem;color:var(--muted);margin-bottom:1.5rem}
+.cancel-form{display:flex;gap:.8rem;flex-wrap:wrap}
+.cancel-form input{
+  flex:1;min-width:220px;padding:.75rem 1rem;border:1.5px solid var(--linen);
+  border-radius:1px;font-family:'Mulish',sans-serif;background:var(--w);
+  color:var(--text);outline:none;font-size:.9rem;transition:border-color .2s;
+}
+.cancel-form input:focus{border-color:var(--terra)}
+.bookings-found{display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem}
+.bk-card{
+  padding:1.1rem 1.4rem;background:var(--cream);border:1px solid var(--linen);border-radius:2px;
+  display:flex;align-items:center;justify-content:space-between;gap:1rem;flex-wrap:wrap;
+}
+.bk-card.cancelled-card{opacity:.55}
+.bk-card.cancelled-card::after{content:'Cancelada';font-size:.62rem;letter-spacing:.15em;text-transform:uppercase;color:var(--stone);font-weight:600}
+.bk-info{font-size:.82rem}
+.bk-info strong{display:block;color:var(--text);margin-bottom:.2rem;font-size:.9rem}
+.bk-info span{color:var(--muted)}
+.bk-id{font-size:.7rem;color:var(--stone);letter-spacing:.1em;margin-top:.2rem;font-family:'Mulish',sans-serif}
+.step-nav{display:flex;gap:1rem;align-items:center;margin-top:2rem;flex-wrap:wrap}
+.msg{
+  padding:.8rem 1.2rem;border-radius:1px;font-size:.82rem;
+  margin-top:.8rem;display:none;
+}
+.msg-err{background:rgba(176,64,48,.08);border:1px solid rgba(176,64,48,.2);color:#9a3020}
+.msg-ok{background:rgba(92,110,74,.08);border:1px solid rgba(92,110,74,.2);color:var(--moss)}
+
+/* REVIEWS */
+.reviews-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:1.4rem;margin-top:3rem}
+.review{
+  padding:2rem 1.8rem;background:var(--w);border:1px solid var(--linen);border-radius:2px;
+  transition:transform .3s,box-shadow .3s;
+}
+.review:hover{transform:translateY(-4px);box-shadow:0 8px 32px rgba(60,46,34,.07)}
+.review-q{font-family:'Cormorant Garant',serif;font-size:3.5rem;color:var(--terra);opacity:.22;line-height:.7;margin-bottom:.8rem}
+.review-txt{font-family:'Cormorant Garant',serif;font-style:italic;font-size:1.05rem;color:var(--text);line-height:1.75;margin-bottom:1.5rem}
+.review-who strong{display:block;font-family:'Mulish',sans-serif;font-weight:500;font-size:.8rem;color:var(--text)}
+.review-who span{font-size:.68rem;color:var(--muted)}
+.review-stars{color:var(--terra);font-size:.78rem;letter-spacing:.08em;margin-bottom:.3rem}
+
+/* CONTACT */
+.contact-section{
+  background:var(--cream);
+  display:grid;grid-template-columns:1fr 1fr;gap:5rem;align-items:start;
+}
+.hours-tbl{width:100%;border-collapse:collapse;margin-top:1.8rem}
+.hours-tbl tr{border-bottom:1px solid var(--linen)}
+.hours-tbl tr:last-child{border-bottom:none}
+.hours-tbl td{padding:.7rem 0;font-size:.84rem;color:var(--text)}
+.hours-tbl td:last-child{text-align:right;color:var(--muted)}
+.hours-tbl .tod-row td{color:var(--terra);font-weight:600}
+.hours-tbl .closed-row td{color:var(--linen)}
+.hours-tbl .closed-row td:last-child{color:var(--linen)}
+.cinfo-items{margin-top:1.8rem;display:flex;flex-direction:column;gap:1.4rem}
+.cinfo-item .ci-lbl{font-size:.62rem;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);margin-bottom:.2rem;font-weight:600}
+.cinfo-item a{color:var(--text);text-decoration:none;font-size:.9rem;transition:color .2s;display:block}
+.cinfo-item a:hover{color:var(--terra)}
+.social-row{display:flex;gap:.7rem;margin-top:1.8rem;flex-wrap:wrap}
+.social-pill{
+  font-size:.65rem;letter-spacing:.18em;text-transform:uppercase;
+  padding:.5rem 1.2rem;border:1px solid var(--sand);color:var(--muted);
+  text-decoration:none;border-radius:1px;transition:all .2s;font-weight:500;
+}
+.social-pill:hover{border-color:var(--terra);color:var(--terra)}
+
+/* MAP */
+.map-wrap{height:340px;overflow:hidden;position:relative}
+.map-wrap iframe{width:100%;height:100%;border:none;filter:sepia(.25) saturate(.85) brightness(1.02)}
+
+/* FOOTER */
+footer{
+  background:var(--bark);color:var(--linen);
+  padding:2.4rem 4rem;display:flex;align-items:center;justify-content:space-between;flex-wrap:wrap;gap:1rem;
+}
+.footer-logo{font-family:'Cormorant Garant',serif;font-size:1.1rem;letter-spacing:.04em}
+.footer-logo em{color:var(--sage)}
+.footer-copy{font-size:.62rem;letter-spacing:.12em;color:rgba(226,217,203,.45)}
+.footer-links{display:flex;gap:1.8rem;flex-wrap:wrap;align-items:center}
+.footer-links a{font-size:.62rem;letter-spacing:.14em;color:rgba(226,217,203,.45);text-decoration:none;transition:color .2s;text-transform:uppercase}
+.footer-links a:hover{color:var(--sage)}
+
+/* ANIMATIONS */
+@keyframes fu{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+.reveal{opacity:0;transform:translateY(22px);transition:opacity .7s ease,transform .7s ease}
+.reveal.vis{opacity:1;transform:translateY(0)}
+.d1{transition-delay:.1s}.d2{transition-delay:.2s}.d3{transition-delay:.3s}
+
+/* Modal */
+.modal-overlay{
+  display:none;position:fixed;inset:0;z-index:800;
+  background:rgba(62,46,34,.45);backdrop-filter:blur(4px);
+  align-items:center;justify-content:center;padding:1.5rem;
+}
+.modal-overlay.open{display:flex}
+.modal{
+  background:var(--w);max-width:440px;width:100%;padding:2.5rem 2rem;
+  border-radius:2px;border:1px solid var(--linen);
+  animation:fu .3s both;
+}
+.modal h3{font-family:'Cormorant Garant',serif;font-size:1.4rem;margin-bottom:.6rem}
+.modal p{font-size:.85rem;color:var(--muted);margin-bottom:1.8rem}
+.modal-actions{display:flex;gap:.8rem;justify-content:flex-end;flex-wrap:wrap}
+
+/* RESPONSIVE */
+@media(max-width:920px){
+  section{padding:4rem 1.5rem}
+  .divider{margin:0 1.5rem}
+  footer{padding:2rem 1.5rem;flex-direction:column;text-align:center}
+  .footer-links{justify-content:center}
+  .about{grid-template-columns:1fr;gap:2.5rem}
+  .about-img{aspect-ratio:4/3}
+  .svcs-grid{grid-template-columns:1fr}
+  .gallery-grid{grid-template-columns:1fr}
+  .gal-item.tall{grid-row:span 1}
+  .svc-opts{grid-template-columns:1fr}
+  .slots-grid{grid-template-columns:repeat(4,1fr)}
+  .reviews-grid{grid-template-columns:1fr}
+  .contact-section{grid-template-columns:1fr;gap:3rem}
+  .frow{grid-template-columns:1fr}
+}
+@media(max-width:480px){.slots-grid{grid-template-columns:repeat(3,1fr)}}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+
+  <!-- LEFT: Logo -->
+  <a href="#" class="nav-logo" aria-label="Nacho Huici — Inicio">
+    <svg class="nav-logo-svg" viewBox="0 0 220 52" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+      <!-- NACHO -->
+      <text x="0" y="28" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="30" fill="#3c2e22" letter-spacing="-0.5">NACHO</text>
+      <!-- Diagonal slash -->
+      <line x1="98" y1="2" x2="122" y2="50" stroke="#a85c3a" stroke-width="1.8" stroke-linecap="round"/>
+      <!-- HUICI -->
+      <text x="114" y="28" font-family="'Barlow Condensed', sans-serif" font-weight="800" font-size="30" fill="#3c2e22" letter-spacing="-0.5">HUICI</text>
+      <!-- Subtitle -->
+      <text x="1" y="45" font-family="'Mulish', sans-serif" font-weight="600" font-size="7.5" fill="#9e8b78" letter-spacing="2">PELUQUERIA / BARBERSHOP</text>
+    </svg>
+  </a>
+
+  <!-- CENTER: Links -->
+  <ul class="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galeria</a></li>
+    <li><a href="#reservar">Reservar</a></li>
+    <li><a href="#opiniones">Opiniones</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+
+  <!-- RIGHT: Phone + CTA -->
+  <div class="nav-right">
+    <a href="tel:948270715" class="nav-phone">948 27 07 15</a>
+    <div class="nav-sep"></div>
+    <a href="#reservar" class="nav-book">Pedir cita</a>
+  </div>
+
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-bg"></div>
+  <div class="hero-veil"></div>
+  <div class="hero-content">
+    <p class="hero-eyebrow">Barberia & Peluqueria — Pamplona</p>
+    <h1>Arte del<br><em>cuidado</em></h1>
+    <p class="hero-sub">C. de San Fermin, 37 &nbsp;·&nbsp; Pamplona, Navarra</p>
+    <div class="hero-actions">
+      <a href="#reservar" class="btn btn-primary">Pedir cita online</a>
+      <a href="#nosotros" class="btn btn-outline">Conocernos</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- ABOUT -->
+<section id="nosotros" class="about">
+  <div class="about-img reveal">
+    <img src="Vestíbulo_moderno_con_lámpara_decorativa.png" alt="Interior Nacho Huici">
+    <div class="about-frame"></div>
+  </div>
+  <div class="about-text">
+    <span class="label reveal">Quienes somos</span>
+    <h2 class="section-h reveal d1">Un espacio donde<br>el <em>detalle</em> lo es todo</h2>
+    <div style="height:1.6rem"></div>
+    <p class="reveal d2">En Nacho Huici llevamos anos cultivando el arte del cuidado personal en el corazon de Pamplona. Nacho, Maria, Marta y todo el equipo combinan tecnica depurada con un trato proximo y sincero.</p>
+    <p class="reveal d2">Cada visita esta pensada para que salgas exactamente como imaginabas — o incluso mejor. Sin prisa, con el resultado que mereces.</p>
+    <div class="rating-box reveal d3">
+      <div class="rating-n">4,9</div>
+      <div>
+        <div class="stars-row">★★★★★</div>
+        <div class="stars-label">154 resenas en Google</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- SERVICES -->
+<section id="servicios">
+  <div class="section-inner">
+    <span class="label reveal">Lo que ofrecemos</span>
+    <h2 class="section-h reveal d1">Nuestros <em>servicios</em></h2>
+    <div class="svcs-grid">
+      <div class="svc reveal">
+        <div class="svc-n">01</div>
+        <h3>Corte de cabello</h3>
+        <p>Clasico o contemporaneo, tijera o maquina. Adaptado a tu tipo de cabello y a lo que buscas.</p>
+        <div class="svc-dur">45 min</div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-n">02</div>
+        <h3>Corte + Barba</h3>
+        <p>El servicio completo: corte de cabello y arreglo integral de barba en una sola sesion.</p>
+        <div class="svc-dur">60 min</div>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-n">03</div>
+        <h3>Arreglo de barba</h3>
+        <p>Perfilado, definicion y cuidado de la barba. Con productos naturales de primera calidad.</p>
+        <div class="svc-dur">30 min</div>
+      </div>
+      <div class="svc reveal">
+        <div class="svc-n">04</div>
+        <h3>Afeitado clasico</h3>
+        <p>Ritual completo con toalla caliente, preparacion de la piel y navaja. Una experiencia unica.</p>
+        <div class="svc-dur">45 min</div>
+      </div>
+      <div class="svc reveal d1">
+        <div class="svc-n">05</div>
+        <h3>Coloracion</h3>
+        <p>Tinte, mechas o degradado. Asesoramiento personalizado para encontrar el tono que mas te favorece.</p>
+        <div class="svc-dur">90 min</div>
+      </div>
+      <div class="svc reveal d2">
+        <div class="svc-n">06</div>
+        <h3>Tratamiento capilar</h3>
+        <p>Hidratacion, nutricion y cuidado profundo. Productos seleccionados para cada tipo de cabello.</p>
+        <div class="svc-dur">60 min</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- GALLERY -->
+<section id="galeria">
+  <div class="section-inner">
+    <span class="label reveal">El espacio</span>
+    <h2 class="section-h reveal d1">Nuestro <em>local</em></h2>
+    <div class="gallery-grid">
+      <div class="gal-item tall reveal">
+        <img src="Vestíbulo_moderno_con_lámpara_decorativa.png" alt="Recepcion">
+        <div class="gal-cap"><p>Zona de recepcion</p></div>
+      </div>
+      <div class="gal-item reveal d1">
+        <img src="Estación_de_peinado_moderna_en_salón.png" alt="Estaciones de trabajo">
+        <div class="gal-cap"><p>Estaciones de peinado</p></div>
+      </div>
+      <div class="gal-text-card reveal d2">
+        <p>Un equipo,<br><em>una pasion</em><br><span style="font-size:.8rem;font-family:'Mulish',sans-serif;font-style:normal;color:var(--stone);letter-spacing:.15em;text-transform:uppercase;font-size:.65rem">Nacho · Maria · Marta</span></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- BOOKING -->
+<section id="reservar">
+  <div class="booking-wrap">
+    <span class="label reveal">Reserva online</span>
+    <h2 class="section-h reveal d1">Pide tu <em>cita</em></h2>
+    <p class="reveal d2" style="font-size:.88rem;color:var(--muted);margin-bottom:3rem">Selecciona el servicio, el dia y la hora. Te esperamos.</p>
+
+    <!-- Steps indicator -->
+    <div class="steps-bar" id="steps-bar">
+      <div class="step-item active" data-s="1"><div class="step-circle">1</div><div class="step-lbl">Servicio</div></div>
+      <div class="step-item" data-s="2"><div class="step-circle">2</div><div class="step-lbl">Fecha</div></div>
+      <div class="step-item" data-s="3"><div class="step-circle">3</div><div class="step-lbl">Hora</div></div>
+      <div class="step-item" data-s="4"><div class="step-circle">4</div><div class="step-lbl">Datos</div></div>
+      <div class="step-item" data-s="5"><div class="step-circle">5</div><div class="step-lbl">Confirmacion</div></div>
+    </div>
+
+    <!-- Step 1: Service -->
+    <div class="panel show" id="panel-1">
+      <div class="svc-opts" id="svc-opts"></div>
+      <div class="step-nav">
+        <button class="btn btn-primary" onclick="goStep(2)">Siguiente</button>
+      </div>
+    </div>
+
+    <!-- Step 2: Date -->
+    <div class="panel" id="panel-2">
+      <div class="cal-wrap">
+        <div class="cal-head">
+          <button class="cal-btn" onclick="prevMonth()">&larr;</button>
+          <h3 id="cal-lbl"></h3>
+          <button class="cal-btn" onclick="nextMonth()">&rarr;</button>
+        </div>
+        <div class="cal-grid">
+          <div class="dow">Dom</div><div class="dow">Lun</div><div class="dow">Mar</div>
+          <div class="dow">Mie</div><div class="dow">Jue</div><div class="dow">Vie</div><div class="dow">Sab</div>
+          <div id="cal-days"></div>
+        </div>
+      </div>
+      <p id="date-hint" style="font-size:.78rem;color:var(--muted);margin-top:1rem;font-style:italic">Lunes y domingos cerrado. Sabado hasta las 14:00.</p>
+      <div id="msg-date" class="msg msg-err"></div>
+      <div class="step-nav">
+        <button class="btn btn-outline btn-sm" onclick="goStep(1)">Atras</button>
+        <button class="btn btn-primary" onclick="goStep(3)">Siguiente</button>
+      </div>
+    </div>
+
+    <!-- Step 3: Time -->
+    <div class="panel" id="panel-3">
+      <p style="font-size:.82rem;color:var(--muted);margin-bottom:1rem" id="slots-heading"></p>
+      <div class="slots-legend">
+        <span class="leg"><span class="leg-dot leg-avail"></span> Disponible</span>
+        <span class="leg"><span class="leg-dot leg-sel"></span> Seleccionado</span>
+        <span class="leg"><span class="leg-dot leg-taken"></span> Ocupado</span>
+        <span class="leg"><span class="leg-dot leg-past"></span> Pasado</span>
+      </div>
+      <div class="slots-grid" id="slots-grid"></div>
+      <div id="msg-time" class="msg msg-err"></div>
+      <div class="step-nav">
+        <button class="btn btn-outline btn-sm" onclick="goStep(2)">Atras</button>
+        <button class="btn btn-primary" onclick="goStep(4)">Siguiente</button>
+      </div>
+    </div>
+
+    <!-- Step 4: Personal details -->
+    <div class="panel" id="panel-4">
+      <div class="summary-box">
+        <h4>Tu reserva</h4>
+        <div class="sum-row"><span>Servicio</span><span id="sum-svc">—</span></div>
+        <div class="sum-row"><span>Fecha</span><span id="sum-date">—</span></div>
+        <div class="sum-row"><span>Hora</span><span id="sum-time">—</span></div>
+      </div>
+      <div class="form-grid">
+        <div class="frow">
+          <div class="fgroup">
+            <label>Nombre completo *</label>
+            <input type="text" id="inp-name" placeholder="Ana Garcia">
+          </div>
+          <div class="fgroup">
+            <label>Telefono *</label>
+            <input type="tel" id="inp-phone" placeholder="666 123 456">
+          </div>
+        </div>
+        <div class="fgroup">
+          <label>Notas (opcional)</label>
+          <textarea id="inp-notes" placeholder="Alguna indicacion especial..."></textarea>
+        </div>
+      </div>
+      <div id="msg-form" class="msg msg-err"></div>
+      <div class="step-nav">
+        <button class="btn btn-outline btn-sm" onclick="goStep(3)">Atras</button>
+        <button class="btn btn-primary" onclick="confirmBooking()">Confirmar cita</button>
+      </div>
+    </div>
+
+    <!-- Step 5: Confirmation -->
+    <div class="panel" id="panel-5">
+      <div class="confirm-box">
+        <div class="confirm-check">&#10003;</div>
+        <p style="font-size:.7rem;letter-spacing:.25em;text-transform:uppercase;color:var(--terra);font-weight:600">Cita confirmada</p>
+        <div class="booking-id-show" id="conf-id"></div>
+        <div class="confirm-detail" id="conf-detail"></div>
+        <div class="confirm-note">
+          Guarda tu codigo de reserva. Lo necesitaras si deseas cancelar tu cita. Tambien puedes llamarnos al <strong>948 27 07 15</strong>.
+        </div>
+        <div style="margin-top:2rem">
+          <button class="btn btn-outline" onclick="resetBooking()">Hacer otra reserva</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cancel section -->
+    <div class="cancel-block" id="cancel-block">
+      <h3>Gestionar mi reserva</h3>
+      <p>Introduce tu numero de telefono o el codigo de reserva (NH-XXXXX) para ver y cancelar tus citas.</p>
+      <div class="cancel-form">
+        <input type="text" id="cancel-inp" placeholder="Ej: 666 123 456 o NH-AB3C2">
+        <button class="btn btn-ghost-terra" onclick="searchBookings()">Buscar citas</button>
+      </div>
+      <div class="bookings-found" id="bookings-found"></div>
+      <div id="msg-cancel" class="msg"></div>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- REVIEWS -->
+<section id="opiniones" style="background:var(--w)">
+  <div class="section-inner">
+    <span class="label reveal">Lo que dicen</span>
+    <h2 class="section-h reveal d1">Opiniones <em>reales</em></h2>
+    <div class="reviews-grid">
+      <div class="review reveal">
+        <div class="review-q">"</div>
+        <p class="review-txt">Absolutamente recomendable mi experiencia con Nacho, igualmente con Maria, profesional y un encanto de persona. Local muy acogedor.</p>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-who"><strong>Carlos Urquijo</strong><span>Hace 3 meses · Google</span></div>
+      </div>
+      <div class="review reveal d1">
+        <div class="review-q">"</div>
+        <p class="review-txt">Fui por primera vez y encantado. Me dieron cita para el mismo dia. Marta me atendio muy amable y quede muy satisfecho con el corte.</p>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-who"><strong>Patxi Elizondo</strong><span>Hace un ano · Google</span></div>
+      </div>
+      <div class="review reveal d2">
+        <div class="review-q">"</div>
+        <p class="review-txt">Primera vez que voy por recomendacion y ha sido top. Sin dar mucha explicacion consiguen el resultado que estas buscando.</p>
+        <div class="review-stars">★★★★★</div>
+        <div class="review-who"><strong>Jorge Oteiza Gutierrez</strong><span>Hace un ano · Google</span></div>
+      </div>
+    </div>
+    <div style="text-align:center;margin-top:2.5rem" class="reveal">
+      <a href="https://www.google.com/maps/place/Nacho+Huici" target="_blank" class="btn btn-outline">Ver todas las resenas en Google</a>
+    </div>
+  </div>
+</section>
+
+<hr class="divider">
+
+<!-- CONTACT -->
+<section id="contacto" class="contact-section">
+  <div>
+    <span class="label reveal">Horario</span>
+    <h2 class="section-h reveal d1">Cuando <em>visitarnos</em></h2>
+    <table class="hours-tbl" id="hours-tbl">
+      <tr class="closed-row"><td>Domingo</td><td>Cerrado</td></tr>
+      <tr class="closed-row"><td>Lunes</td><td>Cerrado</td></tr>
+      <tr><td>Martes</td><td>9:00 – 20:00</td></tr>
+      <tr><td>Miercoles</td><td>9:00 – 20:00</td></tr>
+      <tr><td>Jueves</td><td>9:00 – 20:00</td></tr>
+      <tr><td>Viernes</td><td>9:00 – 20:00</td></tr>
+      <tr><td>Sabado</td><td>9:00 – 14:00</td></tr>
+    </table>
+  </div>
+  <div>
+    <span class="label reveal">Donde encontrarnos</span>
+    <h2 class="section-h reveal d1">Contacto</h2>
+    <div class="cinfo-items">
+      <div class="cinfo-item reveal d1">
+        <div class="ci-lbl">Direccion</div>
+        <a href="https://maps.google.com/?q=C.+de+San+Fermin+37+Pamplona" target="_blank">C. de San Fermin, 37<br>31003 Pamplona, Navarra</a>
+      </div>
+      <div class="cinfo-item reveal d2">
+        <div class="ci-lbl">Telefono</div>
+        <a href="tel:948270715">948 27 07 15</a>
+      </div>
+    </div>
+    <div class="social-row reveal d3">
+      <a href="https://www.instagram.com/nacho_huici/" target="_blank" class="social-pill">Instagram</a>
+      <a href="https://www.facebook.com/NachoHuici19/" target="_blank" class="social-pill">Facebook</a>
+    </div>
+  </div>
+</section>
+
+<!-- MAP -->
+<div class="map-wrap">
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2925.0!2d-1.6470!3d42.8184!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0xd5092ff69fd7399%3A0x3744471773b71dc6!2sNacho%20Huici!5e0!3m2!1ses!2ses!4v1"
+    allowfullscreen="" loading="lazy"></iframe>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">Nacho <em>Huici</em></div>
+  <p class="footer-copy">2025 Nacho Huici Barberia · Pamplona</p>
+  <div class="footer-links">
+    <a href="https://www.instagram.com/nacho_huici/" target="_blank">Instagram</a>
+    <a href="https://www.facebook.com/NachoHuici19/" target="_blank">Facebook</a>
+    <a href="tel:948270715">948 27 07 15</a>
+    <a href="admin.html">Administracion</a>
+  </div>
+</footer>
+
+<!-- Cancel confirm modal -->
+<div class="modal-overlay" id="cancel-modal">
+  <div class="modal">
+    <h3>Cancelar cita</h3>
+    <p id="cancel-modal-txt"></p>
+    <div class="modal-actions">
+      <button class="btn btn-outline btn-sm" onclick="closeModal()">Volver</button>
+      <button class="btn btn-danger btn-sm" id="modal-confirm-btn">Cancelar cita</button>
+    </div>
+  </div>
+</div>
+
+<script>
+/* ─── DATA ───────────────────────────────────── */
+const KEY = 'nacho_huici_v1';
+const SERVICES_LIST = [
+  {id:'corte',       name:'Corte de cabello',   dur:'45 min', desc:'Tijera o maquina, clasico o moderno'},
+  {id:'corte-barba', name:'Corte + Barba',       dur:'60 min', desc:'Servicio completo de cabello y barba'},
+  {id:'barba',       name:'Arreglo de barba',    dur:'30 min', desc:'Perfilado, definicion y cuidado'},
+  {id:'afeitado',    name:'Afeitado clasico',    dur:'45 min', desc:'Navaja, toalla caliente y ritual completo'},
+  {id:'color',       name:'Coloracion',          dur:'90 min', desc:'Tinte, mechas o degradado'},
+  {id:'tratamiento', name:'Tratamiento capilar', dur:'60 min', desc:'Hidratacion y nutricion profunda'},
+];
+const OPEN_DAYS = [2,3,4,5,6]; // Tue=2 ... Sat=6
+
+function getBookings(){ return JSON.parse(localStorage.getItem(KEY)||'[]'); }
+function saveBookings(a){ localStorage.setItem(KEY,JSON.stringify(a)); }
+function addBooking(b){ const a=getBookings(); a.push(b); saveBookings(a); }
+function cancelBookingById(id){
+  const a=getBookings();
+  const i=a.findIndex(b=>b.id===id);
+  if(i>-1){ a[i].status='cancelled'; saveBookings(a); return true; }
+  return false;
+}
+function genId(){return 'NH-'+Math.random().toString(36).substr(2,5).toUpperCase();}
+
+/* ─── TIME SLOTS ─────────────────────────────── */
+function getSlots(dateStr){
+  const d=new Date(dateStr+'T12:00:00');
+  const isSat=d.getDay()===6;
+  const endMin=isSat?13*60+30:19*60+30;
+  const s=[];
+  for(let m=9*60;m<=endMin;m+=30){
+    s.push(pad(Math.floor(m/60))+':'+pad(m%60));
+  }
+  return s;
+}
+function pad(n){return String(n).padStart(2,'0');}
+function isPastSlot(dateStr,time){
+  const now=new Date();
+  const [h,m]=time.split(':').map(Number);
+  const dt=new Date(dateStr+'T'+time+':00');
+  return dt<=now;
+}
+function bookedSlots(dateStr){
+  return getBookings().filter(b=>b.date===dateStr&&b.status==='confirmed').map(b=>b.time);
+}
+
+/* ─── BOOKING STATE ──────────────────────────── */
+let bk={step:1,service:null,date:null,time:null,calY:new Date().getFullYear(),calM:new Date().getMonth()};
+
+/* ─── STEP NAVIGATION ────────────────────────── */
+function goStep(n){
+  // Validate
+  if(n===2 && !bk.service){ showMsg('msg-date','Selecciona un servicio primero.','err'); return; }
+  if(n===3 && !bk.date){ showMsg('msg-date','Selecciona una fecha primero.','err'); return; }
+  if(n===4 && !bk.time){ showMsg('msg-time','Selecciona una hora primero.','err'); return; }
+
+  bk.step=n;
+  document.querySelectorAll('.panel').forEach(p=>p.classList.remove('show'));
+  document.getElementById('panel-'+n).classList.add('show');
+
+  // Update steps bar
+  document.querySelectorAll('.step-item').forEach(el=>{
+    const s=+el.dataset.s;
+    el.classList.remove('active','done');
+    if(s===n) el.classList.add('active');
+    else if(s<n){ el.classList.add('done'); el.querySelector('.step-circle').textContent='✓'; }
+    else el.querySelector('.step-circle').textContent=s;
+  });
+
+  if(n===2) renderCalendar();
+  if(n===3) renderSlots();
+  if(n===4) updateSummary();
+  clearAllMsgs();
+}
+
+function showMsg(id,txt,type){
+  const el=document.getElementById(id);
+  el.textContent=txt;
+  el.style.display='block';
+  el.className='msg '+(type==='ok'?'msg-ok':'msg-err');
+}
+function clearAllMsgs(){
+  document.querySelectorAll('.msg').forEach(m=>{m.style.display='none';m.textContent='';});
+}
+
+/* ─── SERVICES RENDER ────────────────────────── */
+function renderServices(){
+  const c=document.getElementById('svc-opts');
+  c.innerHTML=SERVICES_LIST.map(s=>`
+    <div class="svc-opt${bk.service===s.id?' sel':''}" onclick="selectSvc('${s.id}')">
+      <div class="dur">${s.dur}</div>
+      <h4>${s.name}</h4>
+      <div class="desc">${s.desc}</div>
+    </div>
+  `).join('');
+}
+function selectSvc(id){
+  bk.service=id;
+  document.querySelectorAll('.svc-opt').forEach(el=>el.classList.remove('sel'));
+  event.currentTarget.classList.add('sel');
+}
+
+/* ─── CALENDAR ───────────────────────────────── */
+function renderCalendar(){
+  const y=bk.calY, m=bk.calM;
+  const today=new Date(); today.setHours(0,0,0,0);
+  const first=new Date(y,m,1);
+  const last=new Date(y,m+1,0);
+  const monthName=first.toLocaleDateString('es-ES',{month:'long',year:'numeric'});
+  document.getElementById('cal-lbl').textContent=monthName.charAt(0).toUpperCase()+monthName.slice(1);
+
+  let html='';
+  // Empty cells
+  for(let i=0;i<first.getDay();i++) html+='<div class="cday empty"></div>';
+  for(let d=1;d<=last.getDate();d++){
+    const dt=new Date(y,m,d); dt.setHours(0,0,0,0);
+    const ds=`${y}-${pad(m+1)}-${pad(d)}`;
+    const dow=dt.getDay();
+    const isPast=dt<today;
+    const isClosed=!OPEN_DAYS.includes(dow);
+    const isTod=dt.getTime()===today.getTime();
+    const isSel=bk.date===ds;
+    let cls='cday';
+    if(isPast) cls+=' pp';
+    else if(isClosed) cls+=' off';
+    if(isTod) cls+=' tod';
+    if(isSel) cls+=' sel';
+    const click=(!isPast&&!isClosed)?`onclick="selectDate('${ds}')"`:'' ;
+    html+=`<div class="${cls}" ${click}>${d}</div>`;
+  }
+  document.getElementById('cal-days').innerHTML=html;
+}
+function selectDate(ds){
+  bk.date=ds; bk.time=null;
+  renderCalendar();
+}
+function prevMonth(){
+  if(bk.calM===0){bk.calY--;bk.calM=11;}else bk.calM--;
+  renderCalendar();
+}
+function nextMonth(){
+  if(bk.calM===11){bk.calY++;bk.calM=0;}else bk.calM++;
+  renderCalendar();
+}
+
+/* ─── TIME SLOTS ─────────────────────────────── */
+function renderSlots(){
+  const ds=bk.date;
+  const d=new Date(ds+'T12:00:00');
+  const dayName=d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long'});
+  document.getElementById('slots-heading').textContent=
+    'Horas disponibles para el '+dayName.charAt(0).toUpperCase()+dayName.slice(1);
+
+  const slots=getSlots(ds);
+  const booked=bookedSlots(ds);
+  let html='';
+  slots.forEach(t=>{
+    const past=isPastSlot(ds,t);
+    const taken=booked.includes(t);
+    const sel=bk.time===t;
+    let cls='tslot';
+    if(sel) cls+=' sel';
+    else if(taken) cls+=' taken';
+    else if(past) cls+=' past-t';
+    const click=(!past&&!taken)?`onclick="selectSlot('${t}')"`:'' ;
+    html+=`<div class="${cls}" ${click}>${t}</div>`;
+  });
+  document.getElementById('slots-grid').innerHTML=html;
+}
+function selectSlot(t){
+  bk.time=t;
+  renderSlots();
+}
+
+/* ─── SUMMARY ────────────────────────────────── */
+function updateSummary(){
+  const svc=SERVICES_LIST.find(s=>s.id===bk.service);
+  document.getElementById('sum-svc').textContent=svc?svc.name:'—';
+  const d=new Date(bk.date+'T12:00:00');
+  document.getElementById('sum-date').textContent=
+    d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'});
+  document.getElementById('sum-time').textContent=bk.time||'—';
+}
+
+/* ─── CONFIRM ────────────────────────────────── */
+function confirmBooking(){
+  const name=document.getElementById('inp-name').value.trim();
+  const phone=document.getElementById('inp-phone').value.trim();
+  const notes=document.getElementById('inp-notes').value.trim();
+  if(!name||!phone){showMsg('msg-form','Introduce tu nombre y telefono para continuar.','err');return;}
+  const svc=SERVICES_LIST.find(s=>s.id===bk.service);
+  const booking={
+    id:genId(),name,phone,service:svc?svc.name:'',
+    date:bk.date,time:bk.time,notes,
+    status:'confirmed',createdAt:new Date().toISOString()
+  };
+  addBooking(booking);
+
+  // Show confirmation
+  document.getElementById('conf-id').textContent=booking.id;
+  const d=new Date(bk.date+'T12:00:00');
+  document.getElementById('conf-detail').innerHTML=
+    `<b>${name}</b><br>${booking.service}<br>`+
+    d.toLocaleDateString('es-ES',{weekday:'long',day:'numeric',month:'long',year:'numeric'})+
+    ` a las ${booking.time}<br>Telefono: ${phone}`;
+  goStep(5);
+}
+
+function resetBooking(){
+  bk={step:1,service:null,date:null,time:null,calY:new Date().getFullYear(),calM:new Date().getMonth()};
+  document.getElementById('inp-name').value='';
+  document.getElementById('inp-phone').value='';
+  document.getElementById('inp-notes').value='';
+  renderServices();
+  goStep(1);
+}
+
+/* ─── CANCEL ─────────────────────────────────── */
+function searchBookings(){
+  const q=document.getElementById('cancel-inp').value.trim().toLowerCase().replace(/\s/g,'');
+  const found=document.getElementById('bookings-found');
+  const msgEl=document.getElementById('msg-cancel');
+  found.innerHTML=''; msgEl.style.display='none';
+
+  if(!q){showMsg('msg-cancel','Introduce tu telefono o codigo de reserva.','err');return;}
+  const all=getBookings();
+  const results=all.filter(b=>{
+    const phone=b.phone.replace(/\s/g,'').toLowerCase();
+    return phone===q || b.id.toLowerCase()===q || b.id.toLowerCase().replace('-','')===q.replace('-','');
+  });
+
+  if(!results.length){
+    showMsg('msg-cancel','No se encontraron reservas con ese dato. Prueba con otro numero o codigo.','err');
+    return;
+  }
+
+  results.sort((a,b)=>a.date.localeCompare(b.date));
+  results.forEach(bkg=>{
+    const d=new Date(bkg.date+'T12:00:00');
+    const dateStr=d.toLocaleDateString('es-ES',{weekday:'short',day:'numeric',month:'short',year:'numeric'});
+    const isCancelled=bkg.status==='cancelled';
+    const isPastDate=new Date(bkg.date+'T23:59:59')<new Date();
+    found.innerHTML+=`
+      <div class="bk-card${isCancelled?' cancelled-card':''}">
+        <div class="bk-info">
+          <strong>${bkg.name} — ${bkg.service}</strong>
+          <span>${dateStr} a las ${bkg.time}</span>
+          <div class="bk-id">${bkg.id}</div>
+        </div>
+        ${!isCancelled && !isPastDate?`<button class="btn btn-danger btn-sm" onclick="askCancel('${bkg.id}','${bkg.service}','${bkg.time}')">Cancelar</button>`:''}
+      </div>`;
+  });
+}
+
+let pendingCancelId=null;
+function askCancel(id,svc,time){
+  pendingCancelId=id;
+  document.getElementById('cancel-modal-txt').textContent=
+    `Vas a cancelar tu cita de "${svc}" a las ${time}. Esta accion no se puede deshacer.`;
+  document.getElementById('cancel-modal').classList.add('open');
+  document.getElementById('modal-confirm-btn').onclick=()=>{
+    cancelBookingById(pendingCancelId);
+    closeModal();
+    searchBookings();
+    showMsg('msg-cancel','Cita cancelada correctamente.','ok');
+    document.getElementById('msg-cancel').className='msg msg-ok';
+    document.getElementById('msg-cancel').style.display='block';
+  };
+}
+function closeModal(){ document.getElementById('cancel-modal').classList.remove('open'); }
+
+/* ─── HOURS TABLE — highlight today ──────────── */
+function highlightToday(){
+  const dow=new Date().getDay(); // 0=Sun
+  const map={0:0,1:1,2:2,3:3,4:4,5:5,6:6};
+  const rows=document.querySelectorAll('.hours-tbl tr');
+  // rows order: Sun, Mon, Tue, Wed, Thu, Fri, Sat
+  const idx=map[dow];
+  if(rows[idx]) rows[idx].classList.add('tod-row');
+}
+
+/* ─── NAV SCROLL ─────────────────────────────── */
+window.addEventListener('scroll',()=>{
+  document.getElementById('nav').classList.toggle('scrolled',scrollY>50);
+});
+
+/* ─── REVEAL ─────────────────────────────────── */
+const obs=new IntersectionObserver(entries=>{
+  entries.forEach(e=>{if(e.isIntersecting) e.target.classList.add('vis');});
+},{threshold:.1});
+document.querySelectorAll('.reveal').forEach(el=>obs.observe(el));
+
+/* ─── INIT ───────────────────────────────────── */
+renderServices();
+renderCalendar();
+highlightToday();
+</script>
+</body>
+</html>
